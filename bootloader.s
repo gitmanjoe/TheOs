@@ -1,4 +1,5 @@
-; boatloader.asm
+; boatloader.s
+;COPYRIGHT 2025 Justin Bustin, Bartholomew (c)
 bits 16
 org 0x7c00
 
