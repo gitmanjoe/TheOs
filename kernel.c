@@ -13,15 +13,15 @@ void print_char(char c, int x, int y, uint8_t color) {
 
 void kernel() {
     print_char('P', 0, 0, 0x0F);
-    print_char('E', 0, 0, 0x0F);
-    print_char('N', 0, 0, 0x0F);
-    print_char('I', 0, 0, 0x0F);
-    print_char('S', 0, 0, 0x0F);
-    print_char(' ', 0, 0, 0x0F);
-    print_char('P', 0, 0, 0x0F);
-    print_char('A', 0, 0, 0x0F);
-    print_char('R', 0, 0, 0x0F);
-    print_char('S', 0, 0, 0x0F);
-    print_char('E', 0, 0, 0x0F);
-    print_char('R', 0, 0, 0x0F);
+    print_char('E', 1, 0, 0x0F);
+    print_char('N', 2, 0, 0x0F);
+    print_char('I', 3, 0, 0x0F);
+    print_char('S', 4, 0, 0x0F);
+    print_char(' ', 5, 0, 0x0F);
+    print_char('P', 6, 0, 0x0F);
+    print_char('A', 7, 0, 0x0F);
+    print_char('R', 8, 0, 0x0F);
+    print_char('S', 9, 0, 0x0F);
+    print_char('E', 10, 0, 0x0F);
+    print_char('R', 11, 0, 0x0F);
 }
