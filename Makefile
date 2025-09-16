@@ -69,6 +69,7 @@ $(PADDING): | $(BUILDDIR)
 #Create OS image
 $(OS_IMAGE): $(BOOTLOADER_BIN) $(KERNEL_BIN) $(PADDING) | $(BUILDDIR)
 	$(CAT) $^ > $@
+	@echo Image built: $(OS_IMAGE)
 
 clean:
 	rm -rf $(BUILDDIR)
