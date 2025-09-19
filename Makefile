@@ -73,3 +73,6 @@ $(OS_IMAGE): $(BOOTLOADER_BIN) $(KERNEL_BIN) $(PADDING) | $(BUILDDIR)
 
 clean:
 	rm -rf $(BUILDDIR)
+
+run:
+	qemu-system-x86_64 -drive file=$(OS_IMAGE),format=raw -monitor none -serial stdio -nographic
