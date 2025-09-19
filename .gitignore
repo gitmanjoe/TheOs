@@ -1,6 +1,9 @@
 # Custom shit
 bin/
 
+# We hate VSCode
+.vscode/
+
 # Prerequisites
 *.d
 
