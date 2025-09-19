@@ -3,8 +3,6 @@
 bits 16
 org 0x7c00
 
-extern kernel
-
 mov [ BOOT_DRIVE ], dl ; BIOS stores our boot drive in dl
 mov ah, 0x02           ; BIOS read sectors function
 mov al, 128            ; Number of sectors to read
@@ -51,6 +49,5 @@ dw 0xaa55
 
 [ bits 32]
 BEGIN_PM :
-call kernel
 
 ;times 2048 -( $ - $$ ) db 0
