@@ -1,11 +1,10 @@
 ; boatloader.s
-;COPYRIGHT 2025 Justin Bustin, Bartholomew (c)
 bits 16
 org 0x7c00
 
 mov [ BOOT_DRIVE ], dl ; BIOS stores our boot drive in dl
 mov ah, 0x02           ; BIOS read sectors function
-mov al, 128            ; Number of sectors to read
+mov al, 4            ; Number of sectors to read
 mov ch, 0              ; Cylinder 0
 mov cl, 2              ; Start reading at sector 2 (after the boot sector)
 mov dh, 0              ; Head 0
