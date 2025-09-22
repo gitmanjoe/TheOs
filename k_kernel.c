@@ -1,4 +1,7 @@
 #include <stdint.h>
+#include <stdbool.h>
+#include "p_port.h"
+#include "p_serial.h"
 #include "t_types.h"
 
 //TEST CODE!!!!! REMOVE ALL OF THIS AFTER!!!!!!!!!
@@ -12,6 +15,10 @@ void print_char(char c, int x, int y, uint8_t color) {
 }
 
 void kernel() {
+
+    initserial(COM1);
+    serialwrite(COM1, 'P');
+
     print_char('P', 0, 0, 0x0F);
     print_char('E', 1, 0, 0x0F);
     print_char('N', 2, 0, 0x0F);
@@ -24,4 +31,7 @@ void kernel() {
     print_char('S', 9, 0, 0x0F);
     print_char('E', 10, 0, 0x0F);
     print_char('R', 11, 0, 0x0F);
+
+    while(true) {}
+    
 }
