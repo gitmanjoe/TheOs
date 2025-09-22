@@ -3,11 +3,11 @@
 
 #include "t_types.h"
 
-//Define cursor character: starting and ending scanline of cursor
-// cursor_start: RANGE 0-15; cursor_end RANGE 0-15;
+//Define cursor character
+//cursor_start: scanline that cursor starts, RANGE 0-15; cursor_end: scanline that cursor starts, RANGE 0-15;
 void enablecursor(uint8_t cursor_start, uint8_t cursor_end);
 
-//Disable cursor: Turn off cursor
+//Disable cursor
 //NULL
 void disable_cursor();
 
