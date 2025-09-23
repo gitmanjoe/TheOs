@@ -8,29 +8,28 @@ ifeq ($(UNAME), Linux)
     OBJCPY = objcopy
     STAT = stat -c%s
     DD = dd
-    LDFLAGS = -Ttext 0x7e00 -m elf_i386
+    LDFLAGS = -m elf_i386 -T linker.ld
 endif
 # No need for Windows support
 
 BUILDDIR := bin
 
 CFLAGS = -Wall -m32 -ffreestanding -fno-pic -fno-pie
-ASMFLAGS = -f elf
-BOOTLOADERFLAGS = -f bin
+ASMFLAGS = -f elf32
+BOOTLOADERFLAGS = -f elf32
 
 BOOTLOADER = bootloader.s
+LINKER_SCRIPT = linker.ld
 
 C_SOURCES := $(wildcard *.c)
 ASM_SOURCES := $(filter-out $(BOOTLOADER), $(wildcard *.s))
 
 C_OBJECTS := $(patsubst %.c,$(BUILDDIR)/%.o,$(C_SOURCES))
 ASM_OBJECTS := $(patsubst %.s,$(BUILDDIR)/%.o,$(ASM_SOURCES))
-
-BOOTLOADER_BIN := $(BUILDDIR)/$(BOOTLOADER:.s=.bin)
+BOOTLOADER_OBJ := $(BUILDDIR)/$(BOOTLOADER:.s=.o)
 
 KERNEL_TMP := $(BUILDDIR)/kernel.tmp
 KERNEL_BIN := $(BUILDDIR)/kernel.bin
-PADDING := $(BUILDDIR)/padding.bin
 
 OS_IMAGE := $(BUILDDIR)/TheOs.img
 
@@ -43,7 +42,7 @@ $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
 #Assemble bootloader
-$(BOOTLOADER_BIN): $(BOOTLOADER) | $(BUILDDIR)
+$(BOOTLOADER_OBJ): $(BOOTLOADER) | $(BUILDDIR)
 	$(ASMC) $(BOOTLOADERFLAGS) $< -o $@
 
 #Compile C sources
@@ -54,20 +53,16 @@ $(BUILDDIR)/%.o: %.c | $(BUILDDIR)
 $(BUILDDIR)/%.o: %.s | $(BUILDDIR)
 	$(ASMC) $(ASMFLAGS) $< -o $@
 
-#Link kernel
-$(KERNEL_TMP): $(C_OBJECTS) $(ASM_OBJECTS) | $(BUILDDIR)
+#Link bootloader + kernel
+$(KERNEL_TMP): $(BOOTLOADER_OBJ) $(C_OBJECTS) $(ASM_OBJECTS) | $(BUILDDIR)
 	$(LD) $(LDFLAGS) -o $@ $^
 
 #Extract binary from ELF
 $(KERNEL_BIN): $(KERNEL_TMP) | $(BUILDDIR)
-	$(OBJCPY) -O binary -j .text -j .data -j .rodata $< $@
+	$(OBJCPY) -O binary $< $@
 
-#Create padding.bin
-$(PADDING): | $(BUILDDIR)
-	dd if=/dev/zero of=$@ bs=1 count=8264 2>/dev/null
-
-#Create OS image
-$(OS_IMAGE): $(BOOTLOADER_BIN) $(KERNEL_BIN) $(PADDING) | $(BUILDDIR)
+#Create OS image (just the kernel.bin now, includes bootloader)
+$(OS_IMAGE): $(KERNEL_BIN) | $(BUILDDIR)
 	$(CAT) $^ > $@
 	@echo Image built: $(OS_IMAGE)
 
