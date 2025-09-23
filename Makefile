@@ -69,5 +69,5 @@ $(OS_IMAGE): $(KERNEL_BIN) | $(BUILDDIR)
 clean:
 	rm -rf $(BUILDDIR)
 
-run:
+run: $(OS_IMAGE)
 	qemu-system-x86_64 -drive file=$(OS_IMAGE),format=raw -nographic -monitor tcp:127.0.0.1:55555,server,nowait
