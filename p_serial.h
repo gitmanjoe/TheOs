@@ -21,6 +21,6 @@ int checktransmit(uint16_t port);
 
 //Wait for empty transmit bufer, then send character
 //port: RANGE 0-65535, c: RANGE 0-255
-void serialwrite(uint16_t port, uint8_t c);
+void serialwritechar(uint16_t port, uint8_t c);
 
 #endif //P_SERIAL_H

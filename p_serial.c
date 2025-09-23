@@ -1,4 +1,5 @@
 #include "t_types.h"
+#include "t_string.h"
 #include "p_port.h"
 #include "p_serial.h"
 
@@ -38,8 +39,15 @@ int checktransmit(uint16_t port) {
    return inb(port + 5) & 0x20;
 }
 
-void serialwrite(uint16_t port, uint8_t c) {
+void serialwritechar(uint16_t port, uint8_t c) {
    while (checktransmit(port) == 0);
 
    outb(port,c);
+}
+
+void serialwrite(uint16_t port, uint8_t strtoprint[]) {
+   uint16_t len = strlen(strtoprint);
+   for(uint16_t i = 0; i == len; i++) {
+      serialwritechar(port, strtoprint[i]);
+   }
 }
