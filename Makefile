@@ -70,4 +70,4 @@ clean:
 	rm -rf $(BUILDDIR)
 
 run:
-	qemu-system-x86_64 -drive file=$(OS_IMAGE),format=raw -monitor none -serial stdio -nographic
+	qemu-system-x86_64 -drive file=$(OS_IMAGE),format=raw -nographic -monitor tcp:127.0.0.1:55555,server,nowait
