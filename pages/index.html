@@ -8,10 +8,11 @@
   <h1>TheOS running in v86</h1>
   <div id="screen"></div>
 
-  <script src="v86_all.js"></script>
+  <!-- Load v86 directly from copy.sh -->
+  <script src="https://copy.sh/v86/build/v86_all.js"></script>
   <script>
     new V86({
-      wasm_path: "v86.wasm",
+      wasm_path: "https://copy.sh/v86/build/v86.wasm",
       memory_size: 32 * 1024 * 1024,
       vga_memory_size: 2 * 1024 * 1024,
       screen_container: document.getElementById("screen"),
