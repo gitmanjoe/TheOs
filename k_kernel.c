@@ -35,3 +35,7 @@ void kernel() {
     while(true) {}
     
 }
+
+void _start() {
+    kernel();
+}

@@ -45,8 +45,8 @@ init_pm:
     jmp BEGIN_PM
 
 BEGIN_PM:
-    extern kernel
-    call kernel
+    extern _start
+    call _start
 .hang:
     jmp .hang
 
