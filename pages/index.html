@@ -5,7 +5,7 @@
   <title>TheOS Emulator</title>
 </head>
 <body>
-  <h1>Running TheOS in v86</h1>
+  <h1>TheOS running in v86</h1>
   <div id="screen"></div>
 
   <script src="v86_all.js"></script>
@@ -15,8 +15,8 @@
       memory_size: 32 * 1024 * 1024,
       vga_memory_size: 2 * 1024 * 1024,
       screen_container: document.getElementById("screen"),
-      bios: { url: "bios/seabios.bin" },
-      vga_bios: { url: "bios/vgabios.bin" },
+      bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
+      vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
       hda: { url: "TheOS.img" }
     });
   </script>
