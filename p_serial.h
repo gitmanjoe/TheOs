@@ -19,8 +19,12 @@ char serialread(uint16_t port);
 //port: RANGE 0-65535, return: RANGE 0-1
 int checktransmit(uint16_t port);
 
-//Wait for empty transmit bufer, then send character
+//Wait for empty transmit buffer, then send character
 //port: RANGE 0-65535, c: RANGE 0-255
 void serialwritechar(uint16_t port, uint8_t c);
+
+//Wait for empty transmit buffer, then send string
+//port: RANGE 0-65535, stringtoprint: RANGE 0-255
+void serialwrite(uint16_t port, uint8_t strtoprint[]);
 
 #endif //P_SERIAL_H
