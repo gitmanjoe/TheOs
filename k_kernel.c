@@ -17,7 +17,6 @@ void print_char(char c, int x, int y, uint8_t color) {
 void kernel() {
 
     initserial(COM1);
-    serialwrite(COM1, 'P');
 
     print_char('P', 0, 0, 0x0F);
     print_char('E', 1, 0, 0x0F);
@@ -32,7 +31,10 @@ void kernel() {
     print_char('E', 10, 0, 0x0F);
     print_char('R', 11, 0, 0x0F);
 
-    while(true) {}
+    serialwrite(COM1, "TheOS Version 0.1\n(c) 2025 Benjamin Zdunich, Justin Bustin");
+    while(true) {
+        serialwritechar(COM1, serialread(COM1));
+    }
     
 }
 
