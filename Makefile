@@ -31,7 +31,7 @@ BOOTLOADER_OBJ := $(BUILDDIR)/$(BOOTLOADER:.s=.o)
 KERNEL_TMP := $(BUILDDIR)/kernel.tmp
 KERNEL_BIN := $(BUILDDIR)/kernel.bin
 
-OS_IMAGE := $(BUILDDIR)/TheOs.img
+OS_IMAGE := $(BUILDDIR)/TheOS.img
 
 SECTOR_SIZE := 512
 
